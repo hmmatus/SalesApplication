@@ -1,4 +1,4 @@
-package com.example.manrique_matus.salesapplication;
+package com.example.manrique_matus.salesapplication.Activities;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -8,6 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.example.manrique_matus.salesapplication.R;
 
 public class MainActivity extends AppCompatActivity {
 
