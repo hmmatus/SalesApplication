@@ -2,7 +2,9 @@ package com.example.manrique_matus.salesapplication.WebService;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.support.v7.widget.RecyclerView;
 
+import com.example.manrique_matus.salesapplication.Adapter.RegistroAdapter;
 import com.example.manrique_matus.salesapplication.Classes.Cliente;
 import com.example.manrique_matus.salesapplication.Classes.Producto;
 import com.example.manrique_matus.salesapplication.Classes.Vendedor;
@@ -21,6 +23,8 @@ public class WebService extends AsyncTask<Void, Void, String>{
     Cliente cliente;
     Vendedor vendedor;
     Venta venta;
+    RecyclerView rv;
+    RegistroAdapter adapter;
 
     //Arreglos de objetos
     ArrayList<Producto> productos=new ArrayList<>();
@@ -56,6 +60,16 @@ public class WebService extends AsyncTask<Void, Void, String>{
         this.context=context;
         this.venta=venta;
     }
+
+    //Constructor Registro
+    public WebService(int condicion, Context context, Vendedor vendedor, RecyclerView rv, RegistroAdapter adapter){
+        this.condicion=condicion;
+        this.context=context;
+        this.vendedor=vendedor;
+        this.rv=rv;
+        this.adapter=adapter;
+    }
+
 
     @Override
     protected void onPreExecute(){
