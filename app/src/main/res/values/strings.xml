@@ -2,4 +2,8 @@
     <string name="app_name">SalesApplication</string>
     <string name="action_settings">Settings</string>
     <string name="prueba">Prueba</string>
+    <string name="venta">Agregar nueva venta</string>
+    <string name="registro">Ver registro de ventas</string>
+    <string name="informacion">Ver informacion del vendedor</string>
+    <string name="cliente">Insertar nuevo cliente</string>
 </resources>

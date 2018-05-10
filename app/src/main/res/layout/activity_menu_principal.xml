@@ -13,11 +13,13 @@
         android:id="@+id/registro"
         android:layout_row="0"
         android:layout_column="0"
+        android:orientation="vertical"
         android:layout_columnWeight="1"
         android:layout_rowWeight="1"
-        android:orientation="vertical">
+        android:onClick="onClick">
         <ImageView
-            android:src="@drawable/customer-service"
+            android:src="@drawable/checklist"
+            android:theme="@style/imagenes"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -26,17 +28,20 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.2"
-            android:text="@string/prueba"/>
+            android:theme="@style/titulos"
+            android:text="@string/registro"/>
     </LinearLayout>
     <LinearLayout
     android:id="@+id/comprar"
     android:layout_row="0"
     android:layout_column="1"
-        android:layout_columnWeight="1"
-        android:layout_rowWeight="1"
-    android:orientation="vertical">
+    android:layout_columnWeight="1"
+    android:layout_rowWeight="1"
+    android:orientation="vertical"
+    android:onClick="onClick">
     <ImageView
-        android:src="@drawable/user"
+        android:src="@drawable/buy"
+        android:theme="@style/imagenes"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -45,18 +50,20 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.2"
-        android:text="@string/prueba"/>
-</LinearLayout>
+        android:text="@string/venta"
+        android:theme="@style/titulos"/>
+    </LinearLayout>
     <LinearLayout
-        android:id="@+id/usuario"
-        android:theme="@style/medidas"
+        android:id="@+id/cliente"
         android:layout_row="1"
         android:layout_column="0"
         android:layout_columnWeight="1"
         android:layout_rowWeight="1"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:onClick="onClick">
         <ImageView
-            android:src="@drawable/user"
+            android:src="@drawable/shipping"
+            android:theme="@style/imagenes"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -65,18 +72,20 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.2"
-            android:text="@string/prueba"/>
+            android:text="@string/cliente"
+            android:theme="@style/titulos"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/info"
-        android:theme="@style/medidas"
         android:layout_row="1"
         android:layout_column="1"
         android:layout_columnWeight="1"
         android:layout_rowWeight="1"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:onClick="onClick">
         <ImageView
-            android:src="@drawable/user"
+            android:src="@drawable/customer_service"
+            android:theme="@style/imagenes"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -85,6 +94,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.2"
-            android:text="@string/prueba"/>
+            android:text="@string/informacion"
+            android:theme="@style/titulos"/>
     </LinearLayout>
 </GridLayout>
