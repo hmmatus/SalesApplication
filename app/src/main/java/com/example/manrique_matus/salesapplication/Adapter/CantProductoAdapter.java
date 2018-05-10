@@ -1,5 +1,6 @@
 package com.example.manrique_matus.salesapplication.Adapter;
 
+import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,17 +17,29 @@ import java.util.ArrayList;
 
 public class CantProductoAdapter extends RecyclerView.Adapter<CantProductoAdapter.CantProductViewHolder> {
     ArrayList<Producto> producto=new ArrayList<>();
+    private Context context;
+    private int layout;
+
+    public CantProductoAdapter(ArrayList<Producto> producto, Context context, int layout) {
+        this.producto = producto;
+        this.context = context;
+        this.layout = layout;
+    }
 
     public static class CantProductViewHolder extends RecyclerView.ViewHolder{
         CardView cardview;
-        TextView nomProducto,cantProducto,descripcion;
+        TextView nomProducto,descripcion;
+        TextView largo, ancho, area, precio_unidad;
 
         public CantProductViewHolder(View itemView) {
             super(itemView);
             cardview=itemView.findViewById(R.id.cantproducto_card_view);
             nomProducto=itemView.findViewById(R.id.txttitvent);
             descripcion= itemView.findViewById(R.id.txtdescvent);
-            cantProducto= itemView.findViewById(R.id.cantProducto);
+            largo = itemView.findViewById(R.id.txtlargo);
+            ancho = itemView.findViewById(R.id.txtancho);
+            area = itemView.findViewById(R.id.txtarea);
+            precio_unidad = itemView.findViewById(R.id.txtprecioU);
 
         }
     }
@@ -41,6 +54,10 @@ public class CantProductoAdapter extends RecyclerView.Adapter<CantProductoAdapte
     public void onBindViewHolder(CantProductoAdapter.CantProductViewHolder holder, int position) {
         holder.nomProducto.setText(producto.get(position).getNombre_producto());
         holder.descripcion.setText(producto.get(position).getDesc_producto());
+        holder.largo.setText(String.valueOf(producto.get(position).getLargo()));
+        holder.ancho.setText(String.valueOf(producto.get(position).getAncho()));
+        holder.area.setText(String.valueOf(producto.get(position).getArea()));
+        holder.precio_unidad.setText(String.valueOf(producto.get(position).getPrecioUnit()));
 
     }
 
