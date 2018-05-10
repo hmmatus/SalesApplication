@@ -1,4 +1,15 @@
 package com.example.manrique_matus.salesapplication.Activities;
 
-public class Informacion {
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+
+import com.example.manrique_matus.salesapplication.R;
+
+public class Informacion extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_informacion);
+    }
 }

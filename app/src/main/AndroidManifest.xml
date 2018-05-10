@@ -27,6 +27,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activities.FormCliente" />
+        <activity android:name=".Activities.Informacion" />
+        <activity android:name=".Activities.RegistroVentas"></activity>
         <activity android:name=".Activities.MenuPrincipal"></activity>
     </application>
 
