@@ -3,6 +3,7 @@ package com.example.manrique_matus.salesapplication.Adapter;
 import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ public class CantProductoAdapter extends RecyclerView.Adapter<CantProductoAdapte
     ArrayList<Producto> producto=new ArrayList<>();
     private Context context;
     private int layout;
+    static final String TAG = "LoadData";
 
     public CantProductoAdapter(ArrayList<Producto> producto, Context context, int layout) {
         this.producto = producto;
@@ -52,17 +54,16 @@ public class CantProductoAdapter extends RecyclerView.Adapter<CantProductoAdapte
 
     @Override
     public void onBindViewHolder(CantProductoAdapter.CantProductViewHolder holder, int position) {
-        holder.nomProducto.setText(producto.get(position).getNombre_producto());
-        holder.descripcion.setText(producto.get(position).getDesc_producto());
-        holder.largo.setText(String.valueOf(producto.get(position).getLargo()));
-        holder.ancho.setText(String.valueOf(producto.get(position).getAncho()));
-        holder.area.setText(String.valueOf(producto.get(position).getArea()));
-        holder.precio_unidad.setText(String.valueOf(producto.get(position).getPrecioUnit()));
-
+        holder.nomProducto.setText("Nombre :"+producto.get(position).getNombre_producto());
+        holder.descripcion.setText("Descripción: "+producto.get(position).getDesc_producto());
+        holder.largo.setText("Largo: "+String.valueOf(producto.get(position).getLargo()));
+        holder.ancho.setText("Ancho: "+String.valueOf(producto.get(position).getAncho()));
+        holder.area.setText("Área: "+String.valueOf(producto.get(position).getArea()));
+        holder.precio_unidad.setText("Precio: "+String.valueOf(producto.get(position).getPrecioUnit()));
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return producto.size();
     }
 }

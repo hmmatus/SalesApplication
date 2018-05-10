@@ -33,7 +33,7 @@ import java.util.ArrayList;
 public class WebService extends AsyncTask<Void, Void, String>{
     //Cadena que guardara el JSON
     String response="";
-
+    static final String TAG = "LoadData";
     //Campos extras
     boolean flag=true;
     Context context;
@@ -155,7 +155,7 @@ public class WebService extends AsyncTask<Void, Void, String>{
             httpCon.setDoOutput(true);
             respuesta =httpCon.getResponseCode();
             result = new StringBuilder();
-            System.out.print("respuesta" + respuesta);
+
             if (respuesta == HttpURLConnection.HTTP_OK){
                 //Log.d(TAG, "getInfoWeb: Funciona");
                 InputStream in =new BufferedInputStream(httpCon.getInputStream());
@@ -188,13 +188,13 @@ public class WebService extends AsyncTask<Void, Void, String>{
                     jsonArr.getJSONObject(i).getDouble("area")
                    ));
         }
-        /*Log.d(TAG, "setWorkshop: "+ws.get(0).getNomTaller()+"");
-        Log.d(TAG, "setWorkshop: "+ws.get(0).getIdTaller()+"");
+        Log.d(TAG, "setProducto: "+productos.get(0).getNombre_producto()+"");
+        /*Log.d(TAG, "setWorkshop: "+ws.get(0).getIdTaller()+"");
         Log.d(TAG, "setWorkshop: "+ws.get(0).getFechaTaller()+"");
         Log.d(TAG, "setWorkshop: "+ws.get(0).getNomCategoria()+"");
         Log.d(TAG, "setWorkshop: "+ws.get(0).getImgTaller()+"");*/
 
-        adapterprod=new CantProductoAdapter(productos,context, R.layout.activity_cantproducto);
+        adapterprod=new CantProductoAdapter(productos,context, R.layout.activity_card_producto);
         rv.setAdapter(adapterprod);
 
     }
