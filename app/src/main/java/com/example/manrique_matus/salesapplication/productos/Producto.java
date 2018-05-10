@@ -4,21 +4,28 @@ public class Producto {
     private int id_producto;
     private String nombre_producto;
     private String desc_producto;
-    double precio;
+    double precioUnit, largo, ancho, area;
+
 
     //Constructor vacio
     public Producto() {
     }
 
     //Constructor lleno
-    public Producto(int id_producto, String nombre_producto, String desc_producto, double precio) {
+
+
+    public Producto(int id_producto, String nombre_producto, String desc_producto, double precioUnit, double largo, double ancho, double area) {
         this.id_producto = id_producto;
         this.nombre_producto = nombre_producto;
         this.desc_producto = desc_producto;
-        this.precio = precio;
+        this.precioUnit = precioUnit;
+        this.largo = largo;
+        this.ancho = ancho;
+        this.area = area;
     }
 
     //Setters y Getters
+
     public int getId_producto() {
         return id_producto;
     }
@@ -43,11 +50,35 @@ public class Producto {
         this.desc_producto = desc_producto;
     }
 
-    public double getPrecio() {
-        return precio;
+    public double getPrecioUnit() {
+        return precioUnit;
     }
 
-    public void setPrecio(double precio) {
-        this.precio = precio;
+    public void setPrecioUnit(double precioUnit) {
+        this.precioUnit = precioUnit;
+    }
+
+    public double getLargo() {
+        return largo;
+    }
+
+    public void setLargo(double largo) {
+        this.largo = largo;
+    }
+
+    public double getAncho() {
+        return ancho;
+    }
+
+    public void setAncho(double ancho) {
+        this.ancho = ancho;
+    }
+
+    public double getArea() {
+        return area;
+    }
+
+    public void setArea(double area) {
+        this.area = area;
     }
 }
