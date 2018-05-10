@@ -6,4 +6,7 @@
     <string name="registro">Ver registro de ventas</string>
     <string name="informacion">Ver informacion del vendedor</string>
     <string name="cliente">Insertar nuevo cliente</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
