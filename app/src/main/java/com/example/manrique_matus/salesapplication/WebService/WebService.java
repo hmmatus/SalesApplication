@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -154,6 +155,7 @@ public class WebService extends AsyncTask<Void, Void, String>{
             httpCon.setDoOutput(true);
             respuesta =httpCon.getResponseCode();
             result = new StringBuilder();
+            System.out.print("respuesta" + respuesta);
             if (respuesta == HttpURLConnection.HTTP_OK){
                 //Log.d(TAG, "getInfoWeb: Funciona");
                 InputStream in =new BufferedInputStream(httpCon.getInputStream());
