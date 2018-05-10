@@ -23,6 +23,7 @@ import org.json.JSONException;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -31,6 +32,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class WebService extends AsyncTask<Void, Void, String>{
+    String TAG="WebService";
     //Cadena que guardara el JSON
     String response="";
 
@@ -112,6 +114,10 @@ public class WebService extends AsyncTask<Void, Void, String>{
                 e.printStackTrace();
             }
                 break;//para productos
+            case 3:
+                try{
+
+                }catch ()
         }
 
         return null;
@@ -135,6 +141,10 @@ public class WebService extends AsyncTask<Void, Void, String>{
                         e.printStackTrace();
                     }
                     break;
+                case 3:
+                    try{
+                        fillAdapterRegistro(result);
+                    }
 
             }
 
@@ -155,7 +165,6 @@ public class WebService extends AsyncTask<Void, Void, String>{
             httpCon.setDoOutput(true);
             respuesta =httpCon.getResponseCode();
             result = new StringBuilder();
-            System.out.print("respuesta" + respuesta);
             if (respuesta == HttpURLConnection.HTTP_OK){
                 //Log.d(TAG, "getInfoWeb: Funciona");
                 InputStream in =new BufferedInputStream(httpCon.getInputStream());
@@ -194,13 +203,13 @@ public class WebService extends AsyncTask<Void, Void, String>{
         Log.d(TAG, "setWorkshop: "+ws.get(0).getNomCategoria()+"");
         Log.d(TAG, "setWorkshop: "+ws.get(0).getImgTaller()+"");*/
 
-        adapterprod=new CantProductoAdapter(productos,context, R.layout.activity_cantproducto);
+        //adapterprod=new CantProductoAdapter(productos,context, R.layout.activity_cantproducto);
         rv.setAdapter(adapterprod);
 
     }
 
     //Funcion que ingresa el cliente
-    private void IngresarCliente(String url,Cliente cliente){
+    private void IngresarCliente(String url,Cliente cliente) throws MalformedURLException {
     }
 
     //Funcion que ingresa la venta
@@ -208,11 +217,50 @@ public class WebService extends AsyncTask<Void, Void, String>{
     }
 
     //Funcion que recibe JSON de registros
-    private String recibirRegistros(String url,Vendedor vendedor){
-        StringBuilder constructor=null;
-        String result="";
+    private String recibirRegistros(String url,Vendedor vendedor) throws MalformedURLException {
+        String resultset="";
+        URL uri = new URL(url+"dao.php?id_vendedor="+vendedor.getIdVendedor());
+        String linea ="";
+        StringBuilder result = null;
+        int respuesta = 0;
+        String json="";
+        //Log.d(TAG, "recibirRegistros: "+url+"dao.php?id_vendedor="+vendedor.getIdVendedor());
+        try {
+            HttpURLConnection httpCon = (HttpURLConnection)uri.openConnection();
+            httpCon.setReadTimeout(20000);
+            httpCon.setConnectTimeout(20000);
+            httpCon.setDoInput(true);
+            httpCon.setDoOutput(true);
+            respuesta =httpCon.getResponseCode();
+            result = new StringBuilder();
+            if (respuesta == HttpURLConnection.HTTP_OK){
+                //Log.d(TAG, "getInfoWeb: Funciona");
+                InputStream in =new BufferedInputStream(httpCon.getInputStream());
+                BufferedReader read = new BufferedReader(new InputStreamReader(in));
+                while ((linea=read.readLine())!=null){
+                    result.append(linea);
+                }
+                json=resultset.toString();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        return result;
+        return json;
+    }
+
+    private void fillAdapterRegistro(String jsoncad) throws JSONException{
+        JSONArray jsonArr=new JSONArray(jsoncad);
+        Log.d(TAG, "fillAdapterRegistro: Entra");
+        for (int i=0;i<jsonArr.length();i++){
+            ventas.add(new Venta(jsonArr.getJSONObject(i).getInt("id_venta"),
+                    jsonArr.getJSONObject(i).getString("fecha"),
+                    jsonArr.getJSONObject(i).getDouble("total_venta"),
+                    jsonArr.getJSONObject(i).getString("nom_cliente")));
+            Log.d(TAG, "fillAdapterRegistro: "+ventas.get(i).getCliente());
+        }
+        adapter=new RegistroAdapter(context,ventas);
+        rv.setAdapter(adapter);
     }
 
 
