@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.manrique_matus.salesapplication.R;
+import com.example.manrique_matus.salesapplication.ventas.RegistroVentas;
 
 public class MenuPrincipal extends AppCompatActivity {
 

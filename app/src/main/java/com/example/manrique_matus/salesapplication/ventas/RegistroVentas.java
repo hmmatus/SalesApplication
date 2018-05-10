@@ -1,4 +1,4 @@
-package com.example.manrique_matus.salesapplication.Activities;
+package com.example.manrique_matus.salesapplication.ventas;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

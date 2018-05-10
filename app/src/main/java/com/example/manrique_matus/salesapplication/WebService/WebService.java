@@ -6,7 +6,7 @@ import android.os.AsyncTask;
 import com.example.manrique_matus.salesapplication.Classes.Cliente;
 import com.example.manrique_matus.salesapplication.Classes.Producto;
 import com.example.manrique_matus.salesapplication.Classes.Vendedor;
-import com.example.manrique_matus.salesapplication.Classes.Venta;
+import com.example.manrique_matus.salesapplication.ventas.Venta;
 
 import java.util.ArrayList;
 

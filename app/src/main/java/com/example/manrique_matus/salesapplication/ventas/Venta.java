@@ -1,4 +1,4 @@
-package com.example.manrique_matus.salesapplication.Classes;
+package com.example.manrique_matus.salesapplication.ventas;
 
 import java.util.Date;
 
