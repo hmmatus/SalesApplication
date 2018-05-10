@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -35,6 +36,12 @@ public class Login extends AppCompatActivity {
     public static final int READ_TIMEOUT = 15000;
     private EditText etUser;
     private EditText etPassword;
+    private static final String LOGIN_URL = "http://sales-app-com.stackstaging.com/WebServer/login.inc.php";
+
+    // La respuesta del JSON es
+    private static final String TAG_SUCCESS = "success";
+    private static final String TAG_MESSAGE = "message";
+
 
     SessionManager session;
 
@@ -46,8 +53,8 @@ public class Login extends AppCompatActivity {
         session = new SessionManager(getApplicationContext());
 
         // Get Reference to variables
-        etUser = (EditText) findViewById(R.id.user);
-        etPassword = (EditText) findViewById(R.id.pass1);
+        etUser = (EditText) findViewById(R.id.userLogin);
+        etPassword = (EditText) findViewById(R.id.passLogin);
     }
 
     // Triggers when LOGIN Button clicked
@@ -65,12 +72,12 @@ public class Login extends AppCompatActivity {
     }
 
     public boolean validarTodo() {
-        EditText usuario = (EditText) findViewById(R.id.user);
-        EditText passw = (EditText) findViewById(R.id.pass1);
+        EditText usuario = (EditText) findViewById(R.id.userLogin);
+        EditText passw = (EditText) findViewById(R.id.passLogin);
         String user = usuario.getText().toString();
         String pass = passw.getText().toString();
 
-        if (Patron(user) == false || validarEsp(user) == true || validarEspP(pass) == true) {
+        if ( validarEsp(user) == true || validarEspP(pass) == true) {
 
             return false;
         } else
@@ -80,7 +87,7 @@ public class Login extends AppCompatActivity {
     }
 
     public boolean validarEsp(String cadena) {
-        EditText usua = (EditText) findViewById(R.id.user);
+        EditText usua = (EditText) findViewById(R.id.userLogin);
         if (cadena.matches("")) {
             usua.setError("Esta vacio el campo Carnet");
             return true;
@@ -89,7 +96,7 @@ public class Login extends AppCompatActivity {
     }
 
     public boolean validarEspP(String cadena) {
-        EditText usua = (EditText) findViewById(R.id.pass1);
+        EditText usua = (EditText) findViewById(R.id.passLogin);
         if (cadena.matches("")) {
             usua.setError("Esta vacio el campo Contraseña");
             return true;
@@ -99,7 +106,7 @@ public class Login extends AppCompatActivity {
 
     public boolean Patron(String x) {
         String c = x;
-        EditText usu = (EditText) findViewById(R.id.user);
+        EditText usu = (EditText) findViewById(R.id.userLogin);
         Pattern pattern = Pattern
                 .compile("^[0]{3}[0-9]{3}[0-1]{1}[0-7]{1}$");
 
@@ -116,7 +123,7 @@ public class Login extends AppCompatActivity {
     }
 
 
-    private class AsyncLogin extends AsyncTask<String, String, String> {
+     class AsyncLogin extends AsyncTask<String, String, String> {
         ProgressDialog pdLoading = new ProgressDialog(Login.this);
         HttpURLConnection conn;
         URL url = null;
@@ -137,7 +144,7 @@ public class Login extends AppCompatActivity {
             try {
 
                 // Enter URL address where your php file resides
-                url = new URL("http://copuca-com.stackstaging.com/WebServer/login.inc.php");
+                url = new URL("http://sales-app-com.stackstaging.com/WebServer/login.inc.php");
                 // gamespm-com.stackstaging.com
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block
@@ -230,7 +237,7 @@ public class Login extends AppCompatActivity {
                 Toast.makeText(Login.this, "Inicio de Sesión Perfecto", Toast.LENGTH_SHORT).show();
 
 
-                Intent intent = new Intent(Login.this, MainActivity.class);
+                Intent intent = new Intent(Login.this, MenuPrincipal.class);
                 startActivity(intent);
                 Login.this.finish();
 
@@ -251,7 +258,7 @@ public class Login extends AppCompatActivity {
     }
 
     public void LogSin(View view) {
-        Intent reg = new Intent(this, MainActivity.class);
+        Intent reg = new Intent(this, MenuPrincipal.class);
         startActivity(reg);
 
     }
