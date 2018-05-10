@@ -31,12 +31,11 @@ public class WebService extends AsyncTask<Void, Void, String>{
     ArrayList<Venta> ventas=new ArrayList<>();
 
     //URL
-    String ip="";
+    String ip="http://sales-app-com.stackstaging.com/WebServer/";
 
     //Constructores
 
     //Constructor vacio
-
     public WebService() {
     }
 
