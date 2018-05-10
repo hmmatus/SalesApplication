@@ -11,6 +11,10 @@ public class Vendedor {
     public Vendedor() {
     }
 
+    public Vendedor(int idVendedor) {
+        this.idVendedor = idVendedor;
+    }
+
     //Constructore completo
     public Vendedor(int idVendedor, String nombreVendedor, String apeVendedor, String usuario, String contra) {
         this.idVendedor = idVendedor;

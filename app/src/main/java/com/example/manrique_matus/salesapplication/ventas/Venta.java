@@ -4,9 +4,10 @@ import java.util.Date;
 
 public class Venta {
     private int id_venta;
-    private Date fecha;
+    private String fecha;
     private int cantidad_producto;
-    double total_venta;
+    private double total_venta;
+    private String cliente;
 
     //Constructor vacio
     public Venta() {
@@ -14,11 +15,19 @@ public class Venta {
 
     //Constructor lleno
 
-    public Venta(int id_venta, Date fecha, int cantidad_producto, double total_venta) {
+    public Venta(int id_venta,String fecha, int cantidad_producto, double total_venta,String cliente) {
         this.id_venta = id_venta;
         this.fecha = fecha;
         this.cantidad_producto = cantidad_producto;
         this.total_venta = total_venta;
+        this.cliente=cliente;
+    }
+
+    public Venta(int id_venta, String fecha, double total_venta, String cliente) {
+        this.id_venta = id_venta;
+        this.fecha = fecha;
+        this.total_venta = total_venta;
+        this.cliente = cliente;
     }
 
     //Setters y Getters
@@ -31,11 +40,11 @@ public class Venta {
         this.id_venta = id_venta;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
@@ -53,5 +62,13 @@ public class Venta {
 
     public void setTotal_venta(double total_venta) {
         this.total_venta = total_venta;
+    }
+
+    public String getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(String cliente) {
+        this.cliente = cliente;
     }
 }

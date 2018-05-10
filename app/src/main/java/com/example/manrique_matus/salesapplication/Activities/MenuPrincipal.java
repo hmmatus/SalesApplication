@@ -41,7 +41,7 @@ public class MenuPrincipal extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             case R.id.comprar:
-                intent=new Intent(getApplicationContext(),RegistroVentas.class);
+                intent=new Intent(getApplicationContext(),RegistroVenta.class);
                 startActivity(intent);
                 finish();
 
