@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/images_card_view"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:layout_margin="0dp"
+    android:background="#fff"
+    card_view:cardCornerRadius="4dp"
+    card_view:cardElevation="4dp"
+    card_view:cardUseCompatPadding="true">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:paddingTop="10dp"
+            android:id="@+id/txtdescvent"
+            android:layout_width="match_parent"
+            android:textAlignment="center"
+            android:layout_height="wrap_content"
+            android:text="Titulo"
+            android:textAllCaps="true"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+
+            android:id="@+id/txttitvent"
+            android:layout_below="@id/txtdescvent"
+            android:layout_width="match_parent"
+            android:textAlignment="center"
+            android:layout_height="wrap_content"
+            android:text="Subtitulo"
+            android:textColor="#000"
+            android:textSize="16sp"
+            />
+            <EditText
+                android:id="@+id/edit_cantidad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txttitvent"
+                android:text="1"
+
+                android:textAlignment="center"
+                />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:layout_below="@+id/edit_cantidad"
+            android:text="Aceptar"
+
+            />
+    </RelativeLayout>
+
+
+
+
+
+</android.support.v7.widget.CardView>
