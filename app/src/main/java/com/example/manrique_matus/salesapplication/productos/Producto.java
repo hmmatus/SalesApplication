@@ -1,4 +1,4 @@
-package com.example.manrique_matus.salesapplication.Classes;
+package com.example.manrique_matus.salesapplication.productos;
 
 public class Producto {
     private int id_producto;

@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.example.manrique_matus.salesapplication.Adapter.RegistroAdapter;
 import com.example.manrique_matus.salesapplication.Classes.Cliente;
-import com.example.manrique_matus.salesapplication.Classes.Producto;
+import com.example.manrique_matus.salesapplication.productos.Producto;
 import com.example.manrique_matus.salesapplication.Classes.Vendedor;
 import com.example.manrique_matus.salesapplication.ventas.Venta;
 
