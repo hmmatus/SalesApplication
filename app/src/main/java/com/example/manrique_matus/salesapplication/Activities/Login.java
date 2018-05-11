@@ -146,6 +146,9 @@ public class Login extends AppCompatActivity {
                 // Enter URL address where your php file resides
                 url = new URL("http://sales-app-com.stackstaging.com/WebServer/login.inc.php");
                 // gamespm-com.stackstaging.com
+
+
+
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -164,8 +167,8 @@ public class Login extends AppCompatActivity {
 
                 // Append parameters to URL
                 Uri.Builder builder = new Uri.Builder()
-                        .appendQueryParameter("username", params[0])
-                        .appendQueryParameter("password", params[1]);
+                        .appendQueryParameter("user_vendedor", params[0])
+                        .appendQueryParameter("clave_vendedor", params[1]);
                 String query = builder.build().getEncodedQuery();
 
                 // Open connection for sending data
@@ -247,11 +250,16 @@ public class Login extends AppCompatActivity {
                 Toast.makeText(Login.this, "No existe ese usuario", Toast.LENGTH_LONG).show();
 
 
-            } else if (result.equalsIgnoreCase("exception") || result.equalsIgnoreCase("unsuccessful")) {
+            } else if (result.equalsIgnoreCase("exception") ) {
 
-                Toast.makeText(Login.this, "Algo sucede con la conexión.", Toast.LENGTH_LONG).show();
+                Toast.makeText(Login.this, "Algo sucede con la conexión con BD.", Toast.LENGTH_LONG).show();
 
             }
+             else if ( result.equalsIgnoreCase("unsuccessful")) {
+
+             Toast.makeText(Login.this, "Algo sucede con la conexión de recepcion.", Toast.LENGTH_LONG).show();
+
+         }
         }
 
 

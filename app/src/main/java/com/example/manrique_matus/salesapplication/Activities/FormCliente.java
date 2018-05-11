@@ -1,11 +1,17 @@
 package com.example.manrique_matus.salesapplication.Activities;
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.app.TimePickerDialog;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.manrique_matus.salesapplication.R;
@@ -16,13 +22,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
-public class FormCliente extends AppCompatActivity {
+public class FormCliente extends AppCompatActivity   {
 
 
-    private static final String REGISTER_URL = "http://sales-app-com.stackstaging.com/WebServer/insert_clientes.php";
-
+  //  private static final String REGISTER_URL = "http://192.168.0.31:8000/SalesApp/addEvent.php";
+    private static final String REGISTER_URL = "http://sales-app-com.stackstaging.com/WebServer/addEvent.php";
     //ids
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
@@ -30,7 +37,7 @@ public class FormCliente extends AppCompatActivity {
     private EditText nCliente;
     private EditText aCliente;
     private ProgressDialog pDialog;
-
+    public Button btnagrega;
     // JSON parser class
     JSONParser jsonParser = new JSONParser();
     @Override
@@ -39,12 +46,21 @@ public class FormCliente extends AppCompatActivity {
         setContentView(R.layout.activity_form_cliente);
 
         // Get Reference to variables
+        btnagrega = (Button) findViewById(R.id.agregarCliente);
         nCliente = (EditText) findViewById(R.id.nombrec);
         aCliente = (EditText) findViewById(R.id.apellidoc);
 
     }
 
-    class CrearEvento extends AsyncTask<String, String, String> {
+
+    public void agregarCliente(View v) {
+
+
+            new CrearEvento().execute();
+
+    }
+
+    public class CrearEvento extends AsyncTask<String, String, String> {
 
         @Override
         protected void onPreExecute() {
