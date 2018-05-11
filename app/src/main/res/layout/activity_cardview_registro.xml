@@ -34,6 +34,7 @@
             android:theme="@style/titulos"
             Cardview:layout_constraintStart_toStartOf="parent"
             Cardview:layout_constraintTop_toBottomOf="@+id/cantProducto" />
+
         <TextView
             android:id="@+id/fecha"
             android:layout_width="wrap_content"
@@ -44,7 +45,18 @@
             Cardview:layout_constraintBottom_toBottomOf="parent"
             Cardview:layout_constraintEnd_toEndOf="parent"
             Cardview:layout_constraintTop_toTopOf="parent"
-            Cardview:layout_constraintVertical_bias="0.175" />
+            Cardview:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/nomCliente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="72dp"
+            android:layout_marginTop="6dp"
+            android:text="@string/cliente"
+            android:theme="@style/titulos"
+            Cardview:layout_constraintEnd_toEndOf="parent"
+            Cardview:layout_constraintTop_toTopOf="parent" />
 
 
     </android.support.constraint.ConstraintLayout>

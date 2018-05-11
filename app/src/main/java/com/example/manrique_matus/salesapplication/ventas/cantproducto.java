@@ -2,7 +2,9 @@ package com.example.manrique_matus.salesapplication.ventas;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.LinearLayout;
 
 import com.example.manrique_matus.salesapplication.Adapter.CantProductoAdapter;
 import com.example.manrique_matus.salesapplication.R;
@@ -18,7 +20,10 @@ public class cantproducto extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cantproducto);
+        LinearLayoutManager lManager;
+        lManager = new LinearLayoutManager( this);
         rv = (RecyclerView) (findViewById(R.id.cantproductorecycler));
+        rv.setLayoutManager(lManager);
         try {
             new WebService(2,this, myadapter, rv).execute().get();
         } catch (InterruptedException e) {
