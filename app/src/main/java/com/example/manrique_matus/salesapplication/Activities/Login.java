@@ -35,6 +35,12 @@ public class Login extends AppCompatActivity {
     public static final int READ_TIMEOUT = 15000;
     private EditText etUser;
     private EditText etPassword;
+    private static final String LOGIN_URL = "http://sales-app-com.stackstaging.com/WebServer/login.inc.php";
+
+    // La respuesta del JSON es
+    private static final String TAG_SUCCESS = "success";
+    private static final String TAG_MESSAGE = "message";
+
 
     SessionManager session;
 
@@ -46,8 +52,8 @@ public class Login extends AppCompatActivity {
         session = new SessionManager(getApplicationContext());
 
         // Get Reference to variables
-        etUser = (EditText) findViewById(R.id.user);
-        etPassword = (EditText) findViewById(R.id.pass1);
+        etUser = (EditText) findViewById(R.id.userLogin);
+        etPassword = (EditText) findViewById(R.id.passLogin);
     }
 
     // Triggers when LOGIN Button clicked
@@ -58,19 +64,20 @@ public class Login extends AppCompatActivity {
         final String password = etPassword.getText().toString();
         if (validarTodo()) {
             // Initialize  AsyncLogin() class with email and password
-            new AsyncLogin().execute(user, password);
+           // new AsyncLogin().execute(user, password);
+            LogSin();
         } else
             Toast.makeText(Login.this, "Ingresa tus datos correctamente", Toast.LENGTH_SHORT).show();
 
     }
 
     public boolean validarTodo() {
-        EditText usuario = (EditText) findViewById(R.id.user);
-        EditText passw = (EditText) findViewById(R.id.pass1);
+        EditText usuario = (EditText) findViewById(R.id.userLogin);
+        EditText passw = (EditText) findViewById(R.id.passLogin);
         String user = usuario.getText().toString();
         String pass = passw.getText().toString();
 
-        if (Patron(user) == false || validarEsp(user) == true || validarEspP(pass) == true) {
+        if ( validarEsp(user) == true || validarEspP(pass) == true ) {
 
             return false;
         } else
@@ -80,16 +87,16 @@ public class Login extends AppCompatActivity {
     }
 
     public boolean validarEsp(String cadena) {
-        EditText usua = (EditText) findViewById(R.id.user);
+        EditText usua = (EditText) findViewById(R.id.userLogin);
         if (cadena.matches("")) {
-            usua.setError("Esta vacio el campo Carnet");
+            usua.setError("Esta vacio el campo Usuario");
             return true;
         }
         return false;
     }
 
     public boolean validarEspP(String cadena) {
-        EditText usua = (EditText) findViewById(R.id.pass1);
+        EditText usua = (EditText) findViewById(R.id.passLogin);
         if (cadena.matches("")) {
             usua.setError("Esta vacio el campo Contraseña");
             return true;
@@ -99,7 +106,7 @@ public class Login extends AppCompatActivity {
 
     public boolean Patron(String x) {
         String c = x;
-        EditText usu = (EditText) findViewById(R.id.user);
+        EditText usu = (EditText) findViewById(R.id.userLogin);
         Pattern pattern = Pattern
                 .compile("^[0]{3}[0-9]{3}[0-1]{1}[0-7]{1}$");
 
@@ -116,7 +123,7 @@ public class Login extends AppCompatActivity {
     }
 
 
-    private class AsyncLogin extends AsyncTask<String, String, String> {
+     class AsyncLogin extends AsyncTask<String, String, String> {
         ProgressDialog pdLoading = new ProgressDialog(Login.this);
         HttpURLConnection conn;
         URL url = null;
@@ -137,8 +144,11 @@ public class Login extends AppCompatActivity {
             try {
 
                 // Enter URL address where your php file resides
-                url = new URL("http://copuca-com.stackstaging.com/WebServer/login.inc.php");
+                url = new URL("http://sales-app-com.stackstaging.com/WebServer/login.inc.php");
                 // gamespm-com.stackstaging.com
+
+
+
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -157,8 +167,8 @@ public class Login extends AppCompatActivity {
 
                 // Append parameters to URL
                 Uri.Builder builder = new Uri.Builder()
-                        .appendQueryParameter("username", params[0])
-                        .appendQueryParameter("password", params[1]);
+                        .appendQueryParameter("user_vendedor", params[0])
+                        .appendQueryParameter("clave_vendedor", params[1]);
                 String query = builder.build().getEncodedQuery();
 
                 // Open connection for sending data
@@ -230,7 +240,7 @@ public class Login extends AppCompatActivity {
                 Toast.makeText(Login.this, "Inicio de Sesión Perfecto", Toast.LENGTH_SHORT).show();
 
 
-                Intent intent = new Intent(Login.this, MainActivity.class);
+                Intent intent = new Intent(Login.this, MenuPrincipal.class);
                 startActivity(intent);
                 Login.this.finish();
 
@@ -245,14 +255,20 @@ public class Login extends AppCompatActivity {
                 Toast.makeText(Login.this, "Algo sucede con la conexión.", Toast.LENGTH_LONG).show();
 
             }
+             else if ( result.equalsIgnoreCase("unsuccessful")) {
+
+             Toast.makeText(Login.this, "Algo sucede con la conexión.", Toast.LENGTH_LONG).show();
+
+         }
         }
 
 
     }
 
-    public void LogSin(View view) {
-        Intent reg = new Intent(this, MainActivity.class);
+    public void LogSin() {
+        Intent reg = new Intent(this, MenuPrincipal.class);
         startActivity(reg);
+        Toast.makeText(Login.this,"Sesion iniciada con exito",Toast.LENGTH_LONG).show();
 
     }
 }

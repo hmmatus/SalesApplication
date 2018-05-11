@@ -38,7 +38,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:id="@+id/user"
+                    android:id="@+id/userLogin"
                     android:inputType="text"
                     android:hint="Usuario empleado"
 
@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp">
                 <EditText
-                    android:id="@+id/pass1"
+                    android:id="@+id/passLogin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
@@ -75,6 +75,7 @@
                 android:id="@+id/button"
                 android:background="#383F5A"
                 android:textColor="#ffffff"
+                android:onClick="checkLogin"
                 android:text="Iniciar Sesión" />
             <!---->
             <!--android:onClick="checkLogin"-->
