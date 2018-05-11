@@ -51,7 +51,7 @@ public class WebService extends AsyncTask<Void, Void, String>{
     ArrayList<Venta> ventas=new ArrayList<>();
 
     //URL
-    String ip="http://sales-app-com.stackstaging.com/WebServer/";
+    String url_historialventas= "http://sales-app-com.stackstaging.com/WebServer/historial.php?id_vendedor=1";
 
     //Constructores
 
@@ -64,6 +64,13 @@ public class WebService extends AsyncTask<Void, Void, String>{
         this.context=context;
         this.adapterprod=adapterprod;
         this.rv=rv;
+    }
+    //Constructor Registro
+    public WebService(int condicion, Context context, RecyclerView rv, RegistroAdapter adapter){
+        this.condicion=condicion;
+        this.context=context;
+        this.rv=rv;
+        this.adapter=adapter;
     }
     //Constructor con objeto Vendedor
     public WebService(int condicion,Context context,Vendedor vendedor){
@@ -86,14 +93,7 @@ public class WebService extends AsyncTask<Void, Void, String>{
         this.venta=venta;
     }
 
-    //Constructor Registro
-    public WebService(int condicion, Context context, Vendedor vendedor, RecyclerView rv, RegistroAdapter adapter){
-        this.condicion=condicion;
-        this.context=context;
-        this.vendedor=vendedor;
-        this.rv=rv;
-        this.adapter=adapter;
-    }
+
 
 
     @Override
@@ -104,7 +104,11 @@ public class WebService extends AsyncTask<Void, Void, String>{
     @Override
     protected String doInBackground(Void... voids) {
         switch (condicion){
-            case 1://Ingresa un cliente
+            case 1: try {
+                response=getInfoWeb(url_historialventas);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
                 break;
             case 2: try {
                 response=getInfoWeb(url_producto);
@@ -113,10 +117,8 @@ public class WebService extends AsyncTask<Void, Void, String>{
             }
                 break;//para productos
         }
-
         return null;
     }
-
     @Override
     protected void onPostExecute(String result) {
         if (response == "") {
@@ -126,7 +128,11 @@ public class WebService extends AsyncTask<Void, Void, String>{
             ((Activity) context).finish();
         } else {
             switch (condicion) {
-                case 1:
+                case 1: try {
+                        setHistorialVentashop(response);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                     break;
                 case 2:
                     try {
@@ -137,7 +143,6 @@ public class WebService extends AsyncTask<Void, Void, String>{
                     break;
 
             }
-
         }
     }
     public String getInfoWeb(String url) throws MalformedURLException {
@@ -188,17 +193,26 @@ public class WebService extends AsyncTask<Void, Void, String>{
                     jsonArr.getJSONObject(i).getDouble("area")
                    ));
         }
-        /*Log.d(TAG, "setWorkshop: "+ws.get(0).getNomTaller()+"");
-        Log.d(TAG, "setWorkshop: "+ws.get(0).getIdTaller()+"");
-        Log.d(TAG, "setWorkshop: "+ws.get(0).getFechaTaller()+"");
-        Log.d(TAG, "setWorkshop: "+ws.get(0).getNomCategoria()+"");
-        Log.d(TAG, "setWorkshop: "+ws.get(0).getImgTaller()+"");*/
 
         adapterprod=new CantProductoAdapter(productos,context, R.layout.activity_cantproducto);
         rv.setAdapter(adapterprod);
 
     }
+    public void setHistorialVentashop(String jsonCad) throws JSONException {
+        JSONArray jsonArr=new JSONArray(jsonCad);
+        for (int i=0;i<jsonArr.length();i++){
+            ventas.add(new Venta(jsonArr.getJSONObject(i).getInt("id_venta"),
+                    jsonArr.getJSONObject(i).getString("fecha"),
+                    jsonArr.getJSONObject(i).getString("nom_vendedor"),
+                    jsonArr.getJSONObject(i).getString("nom_cliente"),
+                    jsonArr.getJSONObject(i).getDouble("total_venta")
+            ));
+        }
 
+        adapter=new RegistroAdapter(ventas,context, R.layout.activity_registro);
+        rv.setAdapter(adapter);
+
+    }
     //Funcion que ingresa el cliente
     private void IngresarCliente(String url,Cliente cliente){
     }

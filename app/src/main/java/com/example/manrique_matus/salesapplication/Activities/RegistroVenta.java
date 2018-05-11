@@ -22,36 +22,25 @@ import java.util.concurrent.ExecutionException;
 public class RegistroVenta extends AppCompatActivity {
     RecyclerView rv;
     RegistroAdapter ra;
-    Vendedor v;
-    String TAG="ActivityRegistros";
-    ArrayList<Venta> ventas;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
-
-        rv = findViewById(R.id.registrov);rv.setLayoutManager(new LinearLayoutManager(this));
-        v = new Vendedor(1);
+        LinearLayoutManager lManager;
+        lManager = new LinearLayoutManager( this);
+        rv = (RecyclerView) findViewById(R.id.registrov);
+        rv.setLayoutManager(lManager);
         //add();
        //ra=new RegistroAdapter(getApplicationContext(),ventas);
-        Log.d(TAG, "onCreate: "+v.getIdVendedor());
         try {
-            new WebService(3, this, v, rv, ra).execute();
+            new WebService(1, this, rv, ra).execute();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        rv.setAdapter(ra);
 
     }
 
-    private void add(){
-        ventas=new ArrayList<>();
-        ventas.add(new Venta(1,"1",10,30,"Jesus"));
-        ventas.add(new Venta(2,"1",10,30,"Jose"));
-        ventas.add(new Venta(3,"1",10,30,"Judas"));
-        ventas.add(new Venta(4,"1",10,30,"Juan"));
-    }
+
 
 
 }
