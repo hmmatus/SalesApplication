@@ -56,10 +56,10 @@ public class CantProductoAdapter extends RecyclerView.Adapter<CantProductoAdapte
     public void onBindViewHolder(CantProductoAdapter.CantProductViewHolder holder, int position) {
         holder.nomProducto.setText("Nombre :"+producto.get(position).getNombre_producto());
         holder.descripcion.setText("Descripción: "+producto.get(position).getDesc_producto());
-        holder.largo.setText("Largo: "+String.valueOf(producto.get(position).getLargo()));
-        holder.ancho.setText("Ancho: "+String.valueOf(producto.get(position).getAncho()));
-        holder.area.setText("Área: "+String.valueOf(producto.get(position).getArea()));
-        holder.precio_unidad.setText("Precio: "+String.valueOf(producto.get(position).getPrecioUnit()));
+        holder.largo.setText("Largo: "+String.valueOf(producto.get(position).getLargo())+"mt");
+        holder.ancho.setText("Ancho: "+String.valueOf(producto.get(position).getAncho())+"mt");
+        holder.area.setText("Área: "+String.valueOf(producto.get(position).getArea())+"mt2");
+        holder.precio_unidad.setText("Precio: $"+String.valueOf(producto.get(position).getPrecioUnit()));
     }
 
     @Override

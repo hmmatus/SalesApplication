@@ -15,14 +15,11 @@ public class MenuPrincipal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
     }
-
     @Override
     public void onBackPressed(){
         super.onBackPressed();
         this.finish();
     }
-
-
     public void onClick(View v){
         Intent intent;
         switch (v.getId()){
@@ -37,11 +34,11 @@ public class MenuPrincipal extends AppCompatActivity {
                 finish();
                 break;
             case R.id.registro:
-                intent=new Intent(getApplicationContext(),RegistroVentas.class);
+                intent=new Intent(this,RegistroVenta.class);
                 startActivity(intent);
                 finish();
             case R.id.comprar:
-                intent=new Intent(getApplicationContext(),RegistroVenta.class);
+                intent=new Intent(this,RegistroVentas.class);
                 startActivity(intent);
                 finish();
 

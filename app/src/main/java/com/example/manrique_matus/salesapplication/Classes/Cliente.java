@@ -16,6 +16,10 @@ public class Cliente {
         this.apeCliente = apeCliente;
     }
 
+    public Cliente(String nomCliente) {
+        this.nomCliente = nomCliente;
+    }
+
     public String getNomCliente() {
         return nomCliente;
     }

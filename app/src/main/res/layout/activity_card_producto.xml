@@ -96,6 +96,7 @@
             android:background="@color/colorAccent"
             android:layout_below="@+id/edit_cantidad"
             android:text="Aceptar"
+            android:onClick="comprarRventas"
 
             />
     </RelativeLayout>

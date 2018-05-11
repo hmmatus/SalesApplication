@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.example.manrique_matus.salesapplication.Activities.MenuPrincipal;
 import com.example.manrique_matus.salesapplication.Adapter.CantProductoAdapter;
 import com.example.manrique_matus.salesapplication.Adapter.RegistroAdapter;
+import com.example.manrique_matus.salesapplication.Adapter.RegistroVentasAdapter;
 import com.example.manrique_matus.salesapplication.Classes.Cliente;
 import com.example.manrique_matus.salesapplication.R;
 import com.example.manrique_matus.salesapplication.productos.Producto;
@@ -33,7 +34,7 @@ import java.util.ArrayList;
 public class WebService extends AsyncTask<Void, Void, String>{
     //Cadena que guardara el JSON
     String response="";
-
+    static final String TAG = "LoadData";
     //Campos extras
     boolean flag=true;
     Context context;
@@ -43,15 +44,18 @@ public class WebService extends AsyncTask<Void, Void, String>{
     Producto producto;
     Venta venta;
     RecyclerView rv;
+    RegistroVentasAdapter adapterRV;
     RegistroAdapter adapter;
     CantProductoAdapter adapterprod;
     String url_producto ="http://sales-app-com.stackstaging.com/WebServer/productos.php";
     //Arreglos de objetos
     ArrayList<Producto> productos=new ArrayList<>();
     ArrayList<Venta> ventas=new ArrayList<>();
+    ArrayList<Cliente> clientes=new ArrayList<>();
 
     //URL
     String url_historialventas= "http://sales-app-com.stackstaging.com/WebServer/historial.php?id_vendedor=1";
+    String url_Spinner ="http://sales-app-com.stackstaging.com/WebServer/clientes.php";
 
     //Constructores
 
@@ -72,6 +76,13 @@ public class WebService extends AsyncTask<Void, Void, String>{
         this.rv=rv;
         this.adapter=adapter;
     }
+    //Constructor con venta
+    public WebService(int condicion, Context context, RegistroVentasAdapter adapterRV,  RecyclerView rv){
+        this.condicion=condicion;
+        this.context=context;
+        this.adapterRV=adapterRV;
+        this.rv=rv;
+    }
     //Constructor con objeto Vendedor
     public WebService(int condicion,Context context,Vendedor vendedor){
         this.condicion=condicion;
@@ -85,16 +96,6 @@ public class WebService extends AsyncTask<Void, Void, String>{
         this.context=context;
         this.cliente=cliente;
     }
-
-    //Constructor con venta
-    public WebService(int condicion,Context context,Venta venta){
-        this.condicion=condicion;
-        this.context=context;
-        this.venta=venta;
-    }
-
-
-
 
     @Override
     protected void onPreExecute(){
@@ -116,6 +117,12 @@ public class WebService extends AsyncTask<Void, Void, String>{
                 e.printStackTrace();
             }
                 break;//para productos
+            case 3: try {
+                response=getInfoWeb(url_Spinner);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+                break;
         }
         return null;
     }
@@ -137,6 +144,13 @@ public class WebService extends AsyncTask<Void, Void, String>{
                 case 2:
                     try {
                         setProductshop(response);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case 3:
+                    try {
+                        setSpinnershop(response);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -211,6 +225,16 @@ public class WebService extends AsyncTask<Void, Void, String>{
 
         adapter=new RegistroAdapter(ventas,context, R.layout.activity_registro);
         rv.setAdapter(adapter);
+
+    }
+    public void setSpinnershop(String jsonCad) throws JSONException {
+        JSONArray jsonArr=new JSONArray(jsonCad);
+        for (int i=0;i<jsonArr.length();i++){
+            clientes.add(new Cliente(jsonArr.getJSONObject(i).getString("nom_cliente")));
+        }
+        Log.d(TAG,"POBOWEB"+clientes.get(0).getNomCliente());
+        adapterRV = new RegistroVentasAdapter(clientes,context, R.layout.activity_registro_ventas);
+        rv.setAdapter(adapterRV);
 
     }
     //Funcion que ingresa el cliente
