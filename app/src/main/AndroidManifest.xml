@@ -25,7 +25,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.FormCliente" />
+        <activity android:name=".Activities.FormCliente">
+
+
+        </activity>
         <activity android:name=".Activities.Informacion" />
         <activity android:name=".ventas.RegistroVentas" />
         <activity android:name=".Activities.MenuPrincipal" />

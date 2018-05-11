@@ -7,7 +7,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -65,7 +64,8 @@ public class Login extends AppCompatActivity {
         final String password = etPassword.getText().toString();
         if (validarTodo()) {
             // Initialize  AsyncLogin() class with email and password
-            new AsyncLogin().execute(user, password);
+           // new AsyncLogin().execute(user, password);
+            LogSin();
         } else
             Toast.makeText(Login.this, "Ingresa tus datos correctamente", Toast.LENGTH_SHORT).show();
 
@@ -77,7 +77,7 @@ public class Login extends AppCompatActivity {
         String user = usuario.getText().toString();
         String pass = passw.getText().toString();
 
-        if ( validarEsp(user) == true || validarEspP(pass) == true) {
+        if ( validarEsp(user) == true || validarEspP(pass) == true ) {
 
             return false;
         } else
@@ -89,7 +89,7 @@ public class Login extends AppCompatActivity {
     public boolean validarEsp(String cadena) {
         EditText usua = (EditText) findViewById(R.id.userLogin);
         if (cadena.matches("")) {
-            usua.setError("Esta vacio el campo Carnet");
+            usua.setError("Esta vacio el campo Usuario");
             return true;
         }
         return false;
@@ -250,14 +250,14 @@ public class Login extends AppCompatActivity {
                 Toast.makeText(Login.this, "No existe ese usuario", Toast.LENGTH_LONG).show();
 
 
-            } else if (result.equalsIgnoreCase("exception") ) {
+            } else if (result.equalsIgnoreCase("exception") || result.equalsIgnoreCase("unsuccessful")) {
 
-                Toast.makeText(Login.this, "Algo sucede con la conexión con BD.", Toast.LENGTH_LONG).show();
+                Toast.makeText(Login.this, "Algo sucede con la conexión.", Toast.LENGTH_LONG).show();
 
             }
              else if ( result.equalsIgnoreCase("unsuccessful")) {
 
-             Toast.makeText(Login.this, "Algo sucede con la conexión de recepcion.", Toast.LENGTH_LONG).show();
+             Toast.makeText(Login.this, "Algo sucede con la conexión.", Toast.LENGTH_LONG).show();
 
          }
         }
@@ -265,9 +265,10 @@ public class Login extends AppCompatActivity {
 
     }
 
-    public void LogSin(View view) {
+    public void LogSin() {
         Intent reg = new Intent(this, MenuPrincipal.class);
         startActivity(reg);
+        Toast.makeText(Login.this,"Sesion iniciada con exito",Toast.LENGTH_LONG).show();
 
     }
 }

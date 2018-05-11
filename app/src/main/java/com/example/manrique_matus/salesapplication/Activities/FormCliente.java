@@ -28,30 +28,32 @@ import java.util.List;
 public class FormCliente extends AppCompatActivity   {
 
 
-  //  private static final String REGISTER_URL = "http://192.168.0.31:8000/SalesApp/addEvent.php";
+    //private static final String REGISTER_URL = "http://192.168.0.31:8000/SalesApp/addEvent.php";
     private static final String REGISTER_URL = "http://sales-app-com.stackstaging.com/WebServer/addEvent.php";
     //ids
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
 
-    private EditText nCliente;
-    private EditText aCliente;
+    //private EditText nCliente;
+    //private EditText aCliente;
     private ProgressDialog pDialog;
     public Button btnagrega;
     // JSON parser class
-    JSONParser jsonParser = new JSONParser();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_cliente);
 
         // Get Reference to variables
-        btnagrega = (Button) findViewById(R.id.agregarCliente);
-        nCliente = (EditText) findViewById(R.id.nombrec);
-        aCliente = (EditText) findViewById(R.id.apellidoc);
+        //btnagrega = (Button) findViewById(R.id.agregarCliente);
+        //nCliente = (EditText) findViewById(R.id.nombrec);
+        //aCliente = (EditText) findViewById(R.id.apellidoc);
 
     }
 
+    JSONParser jsonParser;
 
     public void agregarCliente(View v) {
 
@@ -70,13 +72,18 @@ public class FormCliente extends AppCompatActivity   {
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(true);
             pDialog.show();
+            btnagrega = (Button) findViewById(R.id.agregarCliente);
+
         }
 
         @Override
         protected String doInBackground(String... args) {
             // TODO Auto-generated method stub
             // Check for success tag
-            int success;
+           // int success;
+            EditText nCliente = (EditText) findViewById(R.id.nombrec);
+            EditText aCliente = (EditText) findViewById(R.id.apellidoc);
+
             String nombre = nCliente.getText().toString();
             String apellido = aCliente.getText().toString();
 
@@ -91,14 +98,17 @@ public class FormCliente extends AppCompatActivity   {
                 Log.d("request!", "starting");
 
                 //Posting user data to script
+
                 JSONObject json = jsonParser.makeHttpRequest(
                         REGISTER_URL, "POST", params);
+                json.toString();
+
 
                 // full json response
                 Log.d("Registering attempt", json.toString());
 
                 // json success element
-                success = json.getInt(TAG_SUCCESS);
+                int success = json.getInt(TAG_SUCCESS);
                 if (success == 1) {
                     Log.d("Cliente Creado!", json.toString());
                     finish();

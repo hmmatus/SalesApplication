@@ -201,6 +201,7 @@ public class WebService extends AsyncTask<Void, Void, String>{
 
     //Funcion que ingresa el cliente
     private void IngresarCliente(String url,Cliente cliente){
+
     }
 
     //Funcion que ingresa la venta
